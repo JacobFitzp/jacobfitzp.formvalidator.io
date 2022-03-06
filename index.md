@@ -1,37 +1,62 @@
-## Welcome to GitHub Pages
+## FormValidator
 
-You can use the [editor on GitHub](https://github.com/JacobFitzp/jacobfitzp.formvalidator.io/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+### Basic Usage
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+```javascript
 
-### Markdown
+let validator = new FormValidator(document.getElementById('target-form'), {
+            fields: {
+                username: {
+                    notEmpty: {
+                        message: 'Username is required'
+					},
+					stringLength: {
+                        message: 'Username must be between 5 and 32 characters long',
+						min: 5,
+						max: 32
+					}
+				},
+				email_address: {
+                    notEmpty: {
+                        message: 'Email address is required'
+					},
+					emailAddress: {
+                        message: 'Email address is not valid'
+					}
+				},
+				password: {
+                    notEmpty: {
+                        message: 'Password is required'
+					},
+					stringLength: {
+                        message: 'Password must be between 8 and 64 characters long',
+                        min: 8,
+						max: 64
+					},
+					passwordStrength: {
+                        mode: 'STRICT',
+						message: 'Password is too easy to guess, please choose something stronger'
+					}
+				},
+				confirm_password: {
+                    matchesField: {
+                        target: 'password',
+						message: 'Passwords don\'t match'
+					}
+				}
+			}
+		});
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+### Validators
 
-### Jekyll Themes
+### Events
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/JacobFitzp/jacobfitzp.formvalidator.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+### FormValidator API
 
-### Support or Contact
+### Extending
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+#### Validators
+
+#### Plugins
